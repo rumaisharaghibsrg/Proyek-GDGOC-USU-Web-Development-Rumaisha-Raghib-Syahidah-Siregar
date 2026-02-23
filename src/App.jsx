@@ -92,7 +92,7 @@ function App() {
   };
 
   return (
-    <Router>
+    <Router basename="/Proyek-GDGOC-USU-Web-Development-Rumaisha-Raghib-Syahidah-Siregar">
       <div className="min-h-screen bg-[#FFF0F2] text-gray-800">
 
         {/* TOAST */}
