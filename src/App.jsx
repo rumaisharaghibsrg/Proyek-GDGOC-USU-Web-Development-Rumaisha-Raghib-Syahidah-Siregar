@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { useState } from "react";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
@@ -83,7 +83,6 @@ function App() {
 
     setOrders([...orders, newOrder]);
 
-    // Hapus item yang sudah di-checkout dari cart
     setCart(cart.filter(
       (item) => !selectedItems.some((s) => s.id === item.id)
     ));
@@ -92,7 +91,8 @@ function App() {
   };
 
   return (
-    <Router basename="/Proyek-GDGOC-USU-Web-Development-Rumaisha-Raghib-Syahidah-Siregar">
+    /* PERBAIKAN: Menggunakan HashRouter (tidak butuh basename) */
+    <Router>
       <div className="min-h-screen bg-[#FFF0F2] text-gray-800">
 
         {/* TOAST */}
@@ -141,6 +141,9 @@ function App() {
               }
             />
             <Route path="/riwayat" element={<Riwayat orders={orders} />} />
+            
+            {/* JIKA RUTE TIDAK DITEMUKAN, PAKSA KE HOME */}
+            <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </div>
       </div>
